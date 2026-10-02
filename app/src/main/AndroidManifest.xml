@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:name=".FoodTrackApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FoodTrack">
+
+        <activity
+            android:name=".ui.TodayActivity"
+            android:exported="true"
+            android:label="@string/today_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false"
+            android:label="@string/title_food_db"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+            android:name=".ui.FoodDetailActivity"
+            android:exported="false"
+            android:label="@string/details" />
+
+        <activity
+            android:name=".ui.AddLogEntryActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:label="@string/add_to_log" />
+
+        <activity
+            android:name=".ui.CustomFoodActivity"
+            android:exported="false"
+            android:label="@string/title_custom_food"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity android:name=".ui.PhysicalActivityActivity" android:exported="false" android:label="@string/title_activity" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.WeightStatsActivity" android:exported="false" android:label="@string/title_weight" android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".ui.MealTemplatesActivity" android:exported="false" android:label="@string/title_templates" />
+        <activity android:name=".ui.MealTemplateBuilderActivity" android:exported="false" android:label="@string/title_template_builder" android:windowSoftInputMode="adjustResize" />
+
+    </application>
+
+</manifest>

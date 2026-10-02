@@ -1,0 +1,11 @@
+FoodTrackApp — 2024 Adult Compendium source
+
+Source: Compendium of Physical Activities — 2024 Adult Compendium
+Official website: https://pacompendium.com/
+Official current Adult Compendium PDF: https://pacompendium.com/wp-content/uploads/2025/02/1_2024-adult-compendium_1_2024.pdf
+
+The bundled physical_activities_2024.tsv contains only current Adult Compendium activity codes verified against the official 2024 Adult Compendium source.
+MET values are kept as published by the source and are not modified by FoodTrackApp.
+The app may use the published MET value in an energy-expenditure estimate; that calculation is an estimate, not a measured personal expenditure.
+
+Verification performed: 2026-08-16
