@@ -1,0 +1,38 @@
+<resources>
+    <color name="background">#F6F8F6</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#172018</color>
+    <color name="text_secondary">#68736A</color>
+    <color name="divider">#E4E9E5</color>
+    <color name="card_stroke">#E2E8E3</color>
+    <color name="surface_alt">#F5F8F5</color>
+    <color name="primary">#2E7D32</color>
+    <color name="primary_dark">#1B5E20</color>
+    <color name="primary_soft">#E8F3E9</color>
+    <color name="danger">#C62828</color>
+    <color name="progress_track">#E7ECE8</color>
+
+    <!-- Macro-nutrient accents (dashboard) -->
+    <color name="macro_protein">#E85D4B</color>
+    <color name="macro_protein_track">#FBE3DF</color>
+    <color name="macro_carbs">#E6A817</color>
+    <color name="macro_carbs_track">#F9EDD1</color>
+    <color name="macro_fat">#4C7BE8</color>
+    <color name="macro_fat_track">#DEE7FC</color>
+
+    <!-- Chart colors (custom canvas views) -->
+    <color name="chart_line">#2E7D32</color>
+    <color name="chart_fill">#262E7D32</color>
+    <color name="chart_grid">#E4E9E5</color>
+    <color name="chart_bar_past">#A9D3AC</color>
+    <color name="chart_bar_today">#2E7D32</color>
+    <color name="chart_bar_over">#E57373</color>
+    <color name="chart_bar_over_today">#C62828</color>
+
+    <!-- Physical-activity screen accent -->
+    <color name="activity_accent">#2E7D32</color>
+    <color name="activity_accent_soft">#E8F3E9</color>
+    <!-- Food search -->
+    <color name="star_on">#F2A900</color>
+    <color name="primary_dark_on_soft">#1B5E20</color>
+</resources>

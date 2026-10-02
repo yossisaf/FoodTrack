@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@color/background" android:layoutDirection="locale">
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingBottom="24dp">
+            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="16dp" app:cardCornerRadius="18dp" app:cardElevation="0dp" app:cardBackgroundColor="@color/surface" app:strokeColor="@color/card_stroke" app:strokeWidth="1dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="15dp" android:orientation="vertical">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="רישום מדידה חדשה" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="9dp" android:gravity="center_vertical">
+                        <EditText android:id="@+id/editWeight" android:layout_width="0dp" android:layout_height="50dp" android:layout_weight="1" android:hint="משקל בק״ג" android:inputType="numberDecimal" android:paddingStart="12dp" android:paddingEnd="12dp"/>
+                        <Button android:id="@+id/buttonSaveWeight" android:layout_width="92dp" android:layout_height="48dp" android:layout_marginStart="8dp" android:text="שמור"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" app:cardCornerRadius="22dp" app:cardElevation="1dp" app:cardBackgroundColor="@color/surface" app:strokeColor="@color/card_stroke" app:strokeWidth="1dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="18dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="משקל נוכחי" android:textSize="13sp" android:textColor="@color/text_secondary"/>
+                    <TextView android:id="@+id/textCurrentWeight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="—" android:textSize="34sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                    <TextView android:id="@+id/textLatestChange" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:textSize="13sp" android:textColor="@color/primary"/>
+                    <com.foodtrack.app.ui.WeightChartView android:id="@+id/weightChart" android:layout_width="match_parent" android:layout_height="150dp" android:layout_marginTop="12dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingStart="12dp" android:paddingEnd="12dp" android:layout_marginTop="10dp">
+                <com.google.android.material.card.MaterialCardView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="4dp" app:cardCornerRadius="16dp" app:cardElevation="0dp" app:cardBackgroundColor="@color/surface" app:strokeColor="@color/card_stroke" app:strokeWidth="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="13dp" android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="שינוי כולל" android:textSize="13sp" android:textColor="@color/text_secondary"/>
+                        <TextView android:id="@+id/textOverallChange" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="—" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="4dp" app:cardCornerRadius="16dp" app:cardElevation="0dp" app:cardBackgroundColor="@color/surface" app:strokeColor="@color/card_stroke" app:strokeWidth="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="13dp" android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ממוצע" android:textSize="13sp" android:textColor="@color/text_secondary"/>
+                        <TextView android:id="@+id/textAverage" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="—" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingStart="12dp" android:paddingEnd="12dp">
+                <com.google.android.material.card.MaterialCardView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="4dp" app:cardCornerRadius="16dp" app:cardElevation="0dp" app:cardBackgroundColor="@color/surface" app:strokeColor="@color/card_stroke" app:strokeWidth="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="13dp" android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="מינימום – מקסימום" android:textSize="13sp" android:textColor="@color/text_secondary"/>
+                        <TextView android:id="@+id/textMinMax" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="—" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_margin="4dp" app:cardCornerRadius="16dp" app:cardElevation="0dp" app:cardBackgroundColor="@color/surface" app:strokeColor="@color/card_stroke" app:strokeWidth="1dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="13dp" android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="יציבות" android:textSize="13sp" android:textColor="@color/text_secondary"/>
+                        <TextView android:id="@+id/textStability" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="—" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="8dp" app:cardCornerRadius="18dp" app:cardElevation="0dp" app:cardBackgroundColor="@color/surface" app:strokeColor="@color/card_stroke" app:strokeWidth="1dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="15dp" android:orientation="vertical">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="מגמה" android:textSize="17sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                    <TextView android:id="@+id/textWeek" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:textSize="14sp" android:textColor="@color/text_secondary"/>
+                    <TextView android:id="@+id/textMonth" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textSize="14sp" android:textColor="@color/text_secondary"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+            <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="16dp" app:cardCornerRadius="18dp" app:cardElevation="0dp" app:cardBackgroundColor="@color/surface" app:strokeColor="@color/card_stroke" app:strokeWidth="1dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="15dp" android:orientation="vertical">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="מחשבון BMI" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="הזינו גובה פעם אחת; המשקל האחרון משמש לחישוב." android:textSize="13sp" android:textColor="@color/text_secondary"/>
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical">
+                        <EditText android:id="@+id/editHeight" android:layout_width="0dp" android:layout_height="50dp" android:layout_weight="1" android:hint="גובה בס״מ" android:inputType="numberDecimal"/>
+                        <Button android:id="@+id/buttonCalculateBmi" android:layout_width="100dp" android:layout_height="48dp" android:layout_marginStart="8dp" android:text="חשב"/>
+                    </LinearLayout>
+                    <TextView android:id="@+id/textBmi" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="BMI: —" android:textSize="22sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                    <TextView android:id="@+id/textBmiCategory" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="" android:textSize="13sp" android:textColor="@color/text_secondary"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingTop="4dp" android:text="היסטוריית מדידות" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+            <TextView android:id="@+id/textEmptyWeight" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="16dp" android:padding="22dp" android:gravity="center" android:text="אין עדיין מדידות. שמרו את המשקל הראשון כדי להתחיל לראות מגמה." android:textSize="14sp" android:textColor="@color/text_secondary" android:background="@drawable/bg_empty"/>
+            <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerWeightHistory" android:layout_width="match_parent" android:layout_height="wrap_content" android:nestedScrollingEnabled="false" android:paddingBottom="12dp"/>
+        </LinearLayout>
+    </ScrollView>
+    <include layout="@layout/bottom_navigation" />
+</LinearLayout>

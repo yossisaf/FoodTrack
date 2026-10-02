@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme.MaterialComponents (not Material3/Compose theming) is used
+         deliberately: it is compatible back to API 14, unlike Material3's
+         dynamic color system which assumes a much newer platform.
+         DarkActionBar (instead of NoActionBar) gives every screen a title bar
+         and an "up" arrow for free — see BaseActivity.
+         DayNight (instead of Light) is what makes the app follow the
+         system's light/dark setting: every color below is a @color/*
+         reference, and values-night/colors.xml supplies the dark value for
+         each one, so this one theme covers both without a values-night
+         copy of this file. -->
+    <style name="Theme.FoodTrack" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorSecondary">@color/primary</item>
+        <item name="colorAccent">@color/primary</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+</resources>

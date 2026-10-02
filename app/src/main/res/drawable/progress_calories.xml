@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- autoMirrored: ClipDrawable's default gravity="left" fill does NOT follow
+     layoutDirection on its own (a well-known ProgressBar/ClipDrawable gap),
+     so without this the bar would always fill from the screen-left even in
+     the Hebrew (RTL) layout. autoMirrored makes it fill from the right in RTL. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:autoMirrored="true">
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle"><corners android:radius="8dp"/><solid android:color="@color/progress_track"/></shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <clip android:gravity="left" android:autoMirrored="true">
+            <shape android:shape="rectangle"><corners android:radius="8dp"/><solid android:color="@color/primary"/></shape>
+        </clip>
+    </item>
+</layer-list>

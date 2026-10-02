@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/background" android:layoutDirection="locale" android:orientation="vertical">
+
+<ScrollView
+    android:id="@+id/scrollActivity"
+    android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+    android:fillViewport="true" android:clipToPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="3dp" android:text="הוצאה אנרגטית משוערת לפי Compendium 2024 · 100% אופליין"
+            android:textSize="13sp" android:textColor="@color/text_secondary"/>
+
+        <!-- Quick-pick popular activities: the fastest path, so it comes first. -->
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:text="פעילויות פופולריות" android:textSize="13sp"
+            android:textStyle="bold" android:textColor="@color/text_primary"/>
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:scrollbars="none" android:overScrollMode="never">
+            <LinearLayout android:id="@+id/quickPickGroup" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </HorizontalScrollView>
+
+        <!-- Search box -->
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" android:text="או חפשו פעילות אחרת" android:textSize="13sp"
+            android:textStyle="bold" android:textColor="@color/text_primary"/>
+        <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:background="@drawable/bg_search">
+            <AutoCompleteTextView android:id="@+id/editActivity"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:hint="למשל: הליכה, אופניים, שחייה"
+                android:singleLine="true" android:inputType="text"
+                android:importantForAutofill="no"
+                android:imeOptions="actionNext"
+                android:paddingStart="14dp" android:paddingEnd="14dp"
+                android:background="@android:color/transparent"
+                android:dropDownHeight="260dp"
+                android:textSize="16sp" android:completionThreshold="1"/>
+        </FrameLayout>
+        <TextView android:id="@+id/textSelectedActivity" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="6dp" android:layout_marginStart="4dp" android:text="בחרו פעילות מהרשימה"
+            android:textSize="13sp" android:textColor="@color/text_secondary"/>
+
+        <!-- Duration + weight, each with a persistent label (hints vanish while typing). -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="18dp" android:baselineAligned="false" android:orientation="horizontal">
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="משך (דקות)" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp" android:background="@drawable/bg_search">
+                    <EditText android:id="@+id/editDuration" android:layout_width="match_parent" android:layout_height="52dp"
+                        android:hint="30" android:inputType="numberDecimal" android:importantForAutofill="no"
+                        android:imeOptions="actionNext" android:selectAllOnFocus="true"
+                        android:paddingStart="14dp" android:paddingEnd="14dp"
+                        android:background="@android:color/transparent" android:textSize="16sp"/>
+                </FrameLayout>
+            </LinearLayout>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:layout_marginStart="8dp" android:orientation="vertical">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="משקל גוף (ק״ג)" android:textSize="13sp" android:textStyle="bold" android:textColor="@color/text_primary"/>
+                <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp" android:background="@drawable/bg_search">
+                    <EditText android:id="@+id/editActivityWeight" android:layout_width="match_parent" android:layout_height="52dp"
+                        android:hint="70" android:inputType="numberDecimal" android:importantForAutofill="no"
+                        android:imeOptions="actionDone" android:selectAllOnFocus="true"
+                        android:paddingStart="14dp" android:paddingEnd="14dp"
+                        android:background="@android:color/transparent" android:textSize="16sp"/>
+                </FrameLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Quick duration chips -->
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:scrollbars="none" android:overScrollMode="never">
+            <LinearLayout android:id="@+id/durationChipGroup" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="horizontal"/>
+        </HorizontalScrollView>
+
+        <!-- Result card -->
+        <com.google.android.material.card.MaterialCardView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" app:cardCornerRadius="18dp" app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/activity_accent_soft" app:strokeColor="@color/card_stroke" app:strokeWidth="1dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:padding="18dp" android:orientation="vertical">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="🔥  הוצאה משוערת" android:textSize="13sp" android:textColor="@color/text_secondary"/>
+                <TextView android:id="@+id/textCalories" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp" android:text="—" android:textSize="34sp" android:textStyle="bold"
+                    android:textColor="@color/activity_accent"/>
+                <TextView android:id="@+id/textFormula" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp" android:text="" android:textSize="13sp" android:textColor="@color/text_secondary"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <Button android:id="@+id/buttonSaveActivity" android:layout_width="match_parent" android:layout_height="52dp"
+            android:layout_marginTop="14dp" android:text="שמור פעילות" android:textStyle="bold"
+            android:backgroundTint="@color/activity_accent"/>
+
+        <!-- Today's logged activities: total + each entry, so a mistake can be deleted. -->
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="22dp" android:text="פעילות היום"
+            android:textColor="@color/text_primary" android:textSize="19sp" android:textStyle="bold"/>
+        <com.google.android.material.card.MaterialCardView android:id="@+id/cardToday"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" app:cardCornerRadius="14dp" app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/surface" app:strokeColor="@color/card_stroke" app:strokeWidth="1dp">
+            <TextView android:id="@+id/textTodayActivity" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:padding="14dp" android:textSize="14sp" android:textColor="@color/text_secondary"/>
+        </com.google.android.material.card.MaterialCardView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerTodayActivities"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
+            android:nestedScrollingEnabled="false"/>
+
+    </LinearLayout>
+</ScrollView>
+
+    <include layout="@layout/bottom_navigation" />
+</LinearLayout>
