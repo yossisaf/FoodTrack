@@ -63,6 +63,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:text="טוען את מאגר המאכלים…"
             android:textColor="@color/text_secondary"
             android:textSize="13sp" />
@@ -70,18 +72,24 @@
             android:id="@+id/buttonMealTemplates"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
+            android:minWidth="0dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:text="תבניות"
             android:textColor="@color/primary"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
         <Button
             android:id="@+id/buttonAddCustomFood"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="44dp"
+            android:minWidth="0dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
             android:text="@string/add_custom_food"
             android:textColor="@color/primary"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <!-- "Did you mean …" / "showing results for …" / ignored words. Tappable when it carries a corrected query. -->
