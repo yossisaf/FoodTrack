@@ -53,6 +53,7 @@ class TodayActivity : BaseActivity() {
         // Goals are editable both by tapping the card and from the title-bar menu.
         binding.cardCalories.setOnClickListener { editGoalDialog() }
         binding.cardWater.setOnClickListener { editWaterGoalDialog() }
+        binding.cardProtein.setOnClickListener { showMacroDetails() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -177,6 +178,55 @@ class TodayActivity : BaseActivity() {
         runSafely("TodayActivity.restoreEntry") {
             UserDatabase.getInstance(applicationContext).logDao().insert(entry)
             refresh()
+        }
+    }
+
+    /** Shows where today's protein, carbs and fat came from, not just the totals. */
+    private fun showMacroDetails() {
+        runSafely("TodayActivity.showMacroDetails") {
+            val entries = UserDatabase.getInstance(applicationContext).logDao().forDate(DateUtil.today())
+            if (entries.isEmpty()) {
+                showMessage("אין עדיין מאכלים ביומן היום")
+                return@runSafely
+            }
+
+            val protein = entries.sumOf { it.proteinG }
+            val carbs = entries.sumOf { it.carbsG }
+            val fat = entries.sumOf { it.fatG }
+            val message = buildString {
+                append(String.format(Locale.getDefault(), "סה״כ: חלבון %.1f ג׳  ·  פחמימות %.1f ג׳  ·  שומן %.1f ג׳\n\n", protein, carbs, fat))
+                append(topMacroContributors(entries, "חלבון", LogEntryEntity::proteinG))
+                append(topMacroContributors(entries, "פחמימות", LogEntryEntity::carbsG))
+                append(topMacroContributors(entries, "שומן", LogEntryEntity::fatG))
+            }
+
+            AlertDialog.Builder(this)
+                .setTitle("פירוט תזונתי להיום")
+                .setMessage(message.trimEnd())
+                .setPositiveButton("סגור", null)
+                .show()
+        }
+    }
+
+    private fun topMacroContributors(
+        entries: List<LogEntryEntity>,
+        title: String,
+        valueOf: (LogEntryEntity) -> Double
+    ): String = buildString {
+        append("$title:\n")
+        val top = entries.asSequence()
+            .filter { valueOf(it) > 0.0 }
+            .sortedByDescending { valueOf(it) }
+            .take(5)
+            .toList()
+
+        if (top.isEmpty()) {
+            append("אין נתונים\n\n")
+        } else {
+            top.forEach { entry ->
+                append(String.format(Locale.getDefault(), "• %s — %.1f ג׳\n", entry.foodNameHe, valueOf(entry)))
+            }
+            append("\n")
         }
     }
 
