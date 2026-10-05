@@ -15,8 +15,8 @@ android {
         // Kept current so the app remains publishable/visible on Google Play.
         // Bump this forward as Play's requirement advances (check before each release).
         targetSdk = 36
-        versionCode = 2
-        versionName = "0.1.1"
+        versionCode = 3
+        versionName = "0.1.2"
 
         vectorDrawables.useSupportLibrary = true
     }
