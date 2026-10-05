@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,7 @@ class TodayActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTodayBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        adaptForCompactScreens()
 
         logAdapter = LogEntryAdapter { entry -> deleteEntry(entry) }
         binding.recyclerLog.layoutManager = LinearLayoutManager(this)
@@ -65,9 +67,21 @@ class TodayActivity : BaseActivity() {
         R.id.action_share -> { shareTodaySummary(); true }
         R.id.action_calorie_goal -> { editGoalDialog(); true }
         R.id.action_water_goal -> { editWaterGoalDialog(); true }
+        R.id.action_copy_yesterday -> { copyYesterday(); true }
         else -> super.onOptionsItemSelected(item)
     }
 
+    /** Keeps the most-used actions comfortably tappable on narrow phones. */
+    private fun adaptForCompactScreens() {
+        if (resources.configuration.screenWidthDp >= 360) return
+        binding.quickActions.orientation = LinearLayout.VERTICAL
+        val buttons = listOf(binding.buttonAddFood, binding.buttonAddActivity, binding.buttonAddWater)
+        buttons.forEachIndexed { index, button ->
+            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(52))
+            if (index > 0) params.topMargin = dpToPx(6)
+            button.layoutParams = params
+        }
+    }
     override fun onResume() {
         super.onResume()
         refresh()
@@ -272,6 +286,39 @@ class TodayActivity : BaseActivity() {
             .show()
     }
 
+    /** Copies the previous day food entries into today, preserving quantities and meal labels. */
+    private fun copyYesterday() {
+        runSafely("TodayActivity.copyYesterday") {
+            val db = UserDatabase.getInstance(applicationContext)
+            val yesterday = db.logDao().forDate(DateUtil.daysAgo(1))
+            if (yesterday.isEmpty()) {
+                showMessage("אתמול אין מאכלים ביומן")
+                return@runSafely
+            }
+
+            AlertDialog.Builder(this@TodayActivity)
+                .setTitle("העתקת היומן מאתמול")
+                .setMessage("יימספו \${yesterday.size} פריטים מיומן אתמול ליומן היום. הפריטים הקיימים היום יישארו ללא שינוי.")
+                .setNegativeButton("ביטול", null)
+                .setPositiveButton("העתק") { _, _ ->
+                    runSafely("TodayActivity.copyYesterday.insert") {
+                        val now = System.currentTimeMillis()
+                        yesterday.forEachIndexed { index, entry ->
+                            db.logDao().insert(
+                                entry.copy(
+                                    id = 0,
+                                    date = DateUtil.today(),
+                                    timestamp = now + index
+                                )
+                            )
+                        }
+                        refresh()
+                        showMessage("הועתקו \${yesterday.size} פריטים ליומן היום")
+                    }
+                }
+                .show()
+        }
+    }
     private fun shareTodaySummary() {
         runSafely("TodayActivity.shareTodaySummary") {
             val db = UserDatabase.getInstance(applicationContext)
