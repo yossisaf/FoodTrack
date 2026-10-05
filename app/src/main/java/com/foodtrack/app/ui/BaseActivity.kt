@@ -80,6 +80,11 @@ abstract class BaseActivity : AppCompatActivity() {
             nav.visibility = View.GONE
             return
         }
+        if (resources.configuration.screenWidthDp < 360) {
+            nav.labelVisibilityMode = BottomNavigationView.LABEL_VISIBILITY_SELECTED
+        } else {
+            nav.labelVisibilityMode = BottomNavigationView.LABEL_VISIBILITY_LABELED
+        }
         nav.selectedItemId = selectedId
         nav.setOnItemSelectedListener { item ->
             if (item.itemId != selectedId) navigateToTab(item.itemId, selectedId)
