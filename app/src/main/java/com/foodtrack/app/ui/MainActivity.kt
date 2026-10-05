@@ -11,6 +11,7 @@ import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import android.widget.LinearLayout
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -68,6 +69,7 @@ class MainActivity : BaseActivity() {
 
         binding = com.foodtrack.app.databinding.ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        adaptForCompactScreens()
         categoryRepository = FoodCategoryRepository.getInstance(applicationContext)
 
         if (selectForMeal) {
@@ -139,6 +141,18 @@ class MainActivity : BaseActivity() {
         if (intent.getBooleanExtra(EXTRA_FOCUS_SEARCH, false)) focusSearch()
     }
 
+    /** Avoids crowding the status/actions row on very narrow phones. */
+    private fun adaptForCompactScreens() {
+        if (resources.configuration.screenWidthDp >= 360) return
+        binding.headerActions.orientation = LinearLayout.VERTICAL
+        binding.textCategoryState.maxLines = 2
+        listOf(binding.buttonMealTemplates, binding.buttonAddCustomFood).forEach { button ->
+            button.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                dpToPx(40)
+            )
+        }
+    }
     override fun onResume() {
         super.onResume()
         // Coming back from adding a custom food / logging something / starring elsewhere:
