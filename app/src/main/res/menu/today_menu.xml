@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_share" android:icon="@drawable/ic_share"
         android:title="@string/menu_share" app:showAsAction="ifRoom" />
+    <item android:id="@+id/action_copy_yesterday" android:title="@string/menu_copy_yesterday" app:showAsAction="never" />
     <item android:id="@+id/action_calorie_goal" android:title="@string/menu_calorie_goal" app:showAsAction="never" />
     <item android:id="@+id/action_water_goal" android:title="@string/menu_water_goal" app:showAsAction="never" />
 </menu>
