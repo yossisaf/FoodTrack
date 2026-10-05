@@ -26,18 +26,49 @@ jobs:
           gradle-version: '8.9'
 
       - name: Build release APK
-        run: gradle --no-daemon assembleRelease
-
-      - name: Upload release APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: FoodTrack-release-apk
-          path: app/build/outputs/apk/release/*.apk
-          if-no-files-found: error
+        id: build
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          gradle --no-daemon assembleRelease 2>&1 | tee /tmp/foodtrack-build.log
 
       - name: Publish build as GitHub Release asset
+        id: publish
+        if: steps.build.outcome == 'success'
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           tag="ci-foodtrack-${GITHUB_RUN_ID}"
           gh release create "$tag" app/build/outputs/apk/release/*.apk             --title "FoodTrack CI build ${GITHUB_RUN_NUMBER}"             --notes "Automated unsigned Release APK for local signing/verification."
+
+      - name: Record CI result and build log
+        if: always()
+        env:
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+        run: |
+          mkdir -p .github/ci
+          {
+            echo "commit: ${GITHUB_SHA}"
+            echo "run_number: ${GITHUB_RUN_NUMBER}"
+            echo "run_id: ${GITHUB_RUN_ID}"
+            echo "build_outcome: ${BUILD_OUTCOME}"
+            echo "publish_outcome: ${PUBLISH_OUTCOME}"
+            echo
+            echo "===== BUILD LOG ====="
+            if [ -f /tmp/foodtrack-build.log ]; then
+              tail -c 120000 /tmp/foodtrack-build.log
+            else
+              echo "No build log was produced."
+            fi
+          } > .github/ci/latest-build.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/ci/latest-build.txt
+          git commit -m "CI build status [ci-skip]" || true
+          git push || true
+
+      - name: Fail job if build or publishing failed
+        if: steps.build.outcome != 'success' || (steps.build.outcome == 'success' && steps.publish.outcome != 'success')
+        run: exit 1
