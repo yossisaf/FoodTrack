@@ -31,7 +31,7 @@ jobs:
         continue-on-error: true
         run: |
           set -o pipefail
-          gradle --no-daemon assembleRelease 2>&1 | tee /tmp/foodtrack-build.log
+          gradle --no-daemon test assembleRelease 2>&1 | tee /tmp/foodtrack-build.log
 
       - name: Upload release APK
         id: upload
