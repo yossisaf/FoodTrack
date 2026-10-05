@@ -200,7 +200,7 @@ class TodayActivity : BaseActivity() {
                 append(topMacroContributors(entries, "שומן", LogEntryEntity::fatG))
             }
 
-            AlertDialog.Builder(this)
+            AlertDialog.Builder(this@TodayActivity)
                 .setTitle("פירוט תזונתי להיום")
                 .setMessage(message.trimEnd())
                 .setPositiveButton("סגור", null)
