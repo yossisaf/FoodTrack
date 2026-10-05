@@ -33,9 +33,19 @@ jobs:
           set -o pipefail
           gradle --no-daemon assembleRelease 2>&1 | tee /tmp/foodtrack-build.log
 
+      - name: Upload release APK
+        id: upload
+        if: steps.build.outcome == 'success'
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: FoodTrack-release-apk-${{ github.run_number }}
+          path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
+
       - name: Publish build as GitHub Release asset
         id: publish
-        if: steps.build.outcome == 'success'
+        if: github.event_name == 'push' && steps.build.outcome == 'success'
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
@@ -55,7 +65,8 @@ jobs:
             echo "run_number: ${GITHUB_RUN_NUMBER}"
             echo "run_id: ${GITHUB_RUN_ID}"
             echo "build_outcome: ${BUILD_OUTCOME}"
-            echo "publish_outcome: ${PUBLISH_OUTCOME}"
+            echo "upload_outcome: ${{ steps.upload.outcome }}"
+          echo "publish_outcome: ${PUBLISH_OUTCOME}"
             echo
             echo "===== BUILD LOG ====="
             if [ -f /tmp/foodtrack-build.log ]; then
@@ -71,5 +82,5 @@ jobs:
           git push || true
 
       - name: Fail job if build or publishing failed
-        if: steps.build.outcome != 'success' || (steps.build.outcome == 'success' && steps.publish.outcome != 'success')
+        if: steps.build.outcome != 'success' || (github.event_name == 'push' && steps.build.outcome == 'success' && steps.publish.outcome != 'success')
         run: exit 1
