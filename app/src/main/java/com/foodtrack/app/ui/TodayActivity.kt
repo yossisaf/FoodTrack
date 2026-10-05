@@ -53,7 +53,7 @@ class TodayActivity : BaseActivity() {
         // Goals are editable both by tapping the card and from the title-bar menu.
         binding.cardCalories.setOnClickListener { editGoalDialog() }
         binding.cardWater.setOnClickListener { editWaterGoalDialog() }
-        binding.cardProtein.setOnClickListener { showMacroDetails() }
+        binding.cardMacroProtein.setOnClickListener { showMacroDetails() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -184,7 +184,7 @@ class TodayActivity : BaseActivity() {
     /** Shows where today's protein, carbs and fat came from, not just the totals. */
     private fun showMacroDetails() {
         runSafely("TodayActivity.showMacroDetails") {
-            val entries = UserDatabase.getInstance(applicationContext).logDao().forDate(DateUtil.today())
+            val entries = UserDatabase.getInstance(this@TodayActivity.applicationContext).logDao().forDate(DateUtil.today())
             if (entries.isEmpty()) {
                 showMessage("אין עדיין מאכלים ביומן היום")
                 return@runSafely
