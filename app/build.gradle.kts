@@ -14,7 +14,7 @@ android {
         minSdk = 19
         // Kept current so the app remains publishable/visible on Google Play.
         // Bump this forward as Play's requirement advances (check before each release).
-        targetSdk = 28
+        targetSdk = 36
         versionCode = 3
         versionName = "0.1.2"
 
