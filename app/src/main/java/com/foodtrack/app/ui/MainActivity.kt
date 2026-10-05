@@ -57,6 +57,7 @@ class MainActivity : BaseActivity() {
     private var currentQuery = ""
     private var suggestionQuery: String? = null
     private var resumedOnce = false
+    private var compactInitialCollapseApplied = false
     private val selectForMeal: Boolean by lazy { intent.getBooleanExtra(EXTRA_SELECT_FOR_MEAL, false) }
     private val categoryViews = LinkedHashMap<FoodCategory, TextView>()
 
@@ -472,6 +473,11 @@ class MainActivity : BaseActivity() {
         showSuggestion(page.outcome)
 
         val empty = shownCount == 0
+        if (!compactInitialCollapseApplied && resources.configuration.screenWidthDp < 360) {
+            binding.foodHeader.setExpanded(false, false)
+            compactInitialCollapseApplied = true
+        }
+
         binding.emptyStateContainer.visibility = if (empty) View.VISIBLE else View.GONE
         binding.buttonShowAllCategories.visibility = View.GONE
         binding.buttonAddAsCustom.visibility = View.GONE
