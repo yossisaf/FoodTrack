@@ -28,6 +28,7 @@
     <string name="menu_share">שיתוף סיכום היום</string>
     <string name="menu_calorie_goal">יעד קלוריות יומי</string>
     <string name="menu_water_goal">יעד כוסות מים</string>
+    <string name="menu_copy_yesterday">העתקת היומן מאתמול</string>
     <string name="title_food_db">מאגר המזון</string>
     <string name="title_pick_food">בחירת מאכל לתבנית</string>
     <string name="title_activity">פעילות גופנית</string>
