@@ -1,9 +1,9 @@
-commit: 3c9f80c23a43624994bd39597069fefa96b3e70a
-run_number: 28
-run_id: 37248164864
-build_outcome: failure
-upload_outcome: skipped
-publish_outcome: skipped
+commit: 80b36e9563eeeee772d4c3bbbfea82aadfd82128
+run_number: 35
+run_id: 37355144043
+build_outcome: success
+upload_outcome: success
+publish_outcome: success
 
 ===== BUILD LOG =====
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.9/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -26,22 +26,44 @@ To suppress this warning, add/update
 to this project's gradle.properties.
 > Task :app:checkKotlinGradlePluginConfigurationErrors
 > Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:generateDebugResValues
+> Task :app:dataBindingMergeDependencyArtifactsDebug
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:mergeDebugResources
+> Task :app:mapDebugSourceSetPaths
+> Task :app:parseDebugLocalResources
+> Task :app:checkDebugAarMetadata
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:dataBindingGenBaseClassesDebug
+> Task :app:extractDeepLinksDebug
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :app:javaPreCompileDebug
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebugUnitTest
+> Task :app:buildKotlinToolingMetadata
 > Task :app:preReleaseBuild UP-TO-DATE
-> Task :app:generateReleaseResValues
 > Task :app:dataBindingMergeDependencyArtifactsRelease
+> Task :app:generateReleaseResValues
 > Task :app:generateReleaseResources
+> Task :app:processDebugResources
+> Task :app:mergeReleaseResources
 > Task :app:packageReleaseResources
-> Task :app:mapReleaseSourceSetPaths
 > Task :app:checkReleaseAarMetadata
+> Task :app:mapReleaseSourceSetPaths
 > Task :app:createReleaseCompatibleScreenManifests
 > Task :app:extractDeepLinksRelease
 > Task :app:parseReleaseLocalResources
-> Task :app:mergeReleaseResources
 > Task :app:processReleaseMainManifest
 > Task :app:dataBindingGenBaseClassesRelease
 > Task :app:processReleaseManifest
-> Task :app:buildKotlinToolingMetadata
+> Task :app:processReleaseManifestForPackage
+> Task :app:preReleaseUnitTestBuild UP-TO-DATE
 > Task :app:javaPreCompileRelease
+> Task :app:javaPreCompileReleaseUnitTest
 > Task :app:extractProguardFiles
 > Task :app:mergeReleaseJniLibFolders
 > Task :app:mergeReleaseNativeLibs NO-SOURCE
@@ -49,24 +71,25 @@ to this project's gradle.properties.
 > Task :app:extractReleaseNativeSymbolTables NO-SOURCE
 > Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
 > Task :app:checkReleaseDuplicateClasses
+> Task :app:processReleaseResources
 > Task :app:desugarReleaseFileDependencies
 > Task :app:mergeReleaseStartupProfile
-> Task :app:processReleaseManifestForPackage
+> Task :app:mergeExtDexRelease
 > Task :app:mergeReleaseArtProfile
 > Task :app:mergeReleaseShaders
 > Task :app:compileReleaseShaders NO-SOURCE
 > Task :app:generateReleaseAssets UP-TO-DATE
 > Task :app:mergeReleaseAssets
+> Task :app:compressReleaseAssets
 > Task :app:extractReleaseVersionControlInfo
 > Task :app:collectReleaseDependencies
-> Task :app:compressReleaseAssets
 > Task :app:sdkReleaseDependencyData
 > Task :app:writeReleaseAppMetadata
 > Task :app:writeReleaseSigningConfigVersions
-> Task :app:processReleaseResources
 > Task :app:optimizeReleaseResources
-> Task :app:mergeExtDexRelease
+> Task :app:kspDebugKotlin
 > Task :app:kspReleaseKotlin
+> Task :app:compileDebugKotlin
 
 > Task :app:compileReleaseKotlin
 w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/data/UserDatabase.kt:56:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
@@ -81,10 +104,40 @@ w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/
 w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/ui/MealTemplatesActivity.kt:46:48 'getColor(Int): Int' is deprecated. Deprecated in Java
 w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/util/Prefs.kt:72:68 'constructor Locale(String!)' is deprecated. Deprecated in Java
 
+> Task :app:compileDebugKotlin
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/data/UserDatabase.kt:56:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/data/UserDatabase.kt:90:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/data/UserDatabase.kt:108:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/search/FoodSearchEngine.kt:90:13 Variable 'activeTokens' is assigned but never accessed
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/search/FoodSearchEngine.kt:102:17 The value 'mappedTokens' assigned to 'var activeTokens: List<String> defined in com.foodtrack.app.search.FoodSearchEngine.search' is never used
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/search/FoodSearchEngine.kt:156:17 Variable 'bestLiteral' is assigned but never accessed
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/search/FoodSearchEngine.kt:168:25 The value 'literal' assigned to 'var bestLiteral: Boolean defined in com.foodtrack.app.search.FoodSearchEngine.score' is never used
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/ui/MealTemplateBuilderActivity.kt:57:9 'startActivityForResult(Intent, Int): Unit' is deprecated. Deprecated in Java
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/ui/MealTemplateBuilderActivity.kt:84:9 'startActivityForResult(Intent, Int): Unit' is deprecated. Deprecated in Java
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/ui/MealTemplatesActivity.kt:46:48 'getColor(Int): Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/util/Prefs.kt:72:68 'constructor Locale(String!)' is deprecated. Deprecated in Java
+
 > Task :app:compileReleaseJavaWithJavac
-> Task :app:generateReleaseLintVitalReportModel
-> Task :app:dexBuilderRelease
+> Task :app:compileDebugJavaWithJavac
+> Task :app:processDebugJavaRes
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:bundleDebugClassesToRuntimeJar
+> Task :app:bundleReleaseClassesToRuntimeJar
+> Task :app:bundleReleaseClassesToCompileJar
+> Task :app:kspDebugUnitTestKotlin
 > Task :app:processReleaseJavaRes
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:kspReleaseUnitTestKotlin
+> Task :app:compileDebugUnitTestKotlin
+> Task :app:compileReleaseUnitTestKotlin
+> Task :app:dexBuilderRelease
+> Task :app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes
+> Task :app:testDebugUnitTest
+> Task :app:compileReleaseUnitTestJavaWithJavac NO-SOURCE
+> Task :app:processReleaseUnitTestJavaRes
+> Task :app:testReleaseUnitTest
+> Task :app:test
 > Task :app:mergeReleaseJavaResource
 > Task :app:mergeDexRelease
 > Task :app:compileReleaseArtProfile
@@ -92,72 +145,9 @@ w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/
 > Task :app:createReleaseApkListingFileRedirect
 > Task :app:lintVitalAnalyzeRelease
 > Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:assembleRelease
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1791224422360.json
 
-> Task :app:lintVitalRelease FAILED
-/home/runner/work/FoodTrack/FoodTrack/app/build.gradle.kts:17: Error: Google Play requires that apps target API level 33 or higher. [ExpiredTargetSdkVersion]
-        targetSdk = 28
-        ~~~~~~~~~~~~~~
-
-   Explanation for issues of type "ExpiredTargetSdkVersion":
-   Configuring your app to target a recent API level ensures that users
-   benefit from significant security and performance improvements, while still
-   allowing your app to run on older Android versions (down to the
-   minSdkVersion).
-
-   To update your targetSdkVersion, follow the steps from "Meeting Google Play
-   requirements for target API level",
-   https://developer.android.com/distribute/best-practices/develop/target-sdk.
-   html
-
-   https://support.google.com/googleplay/android-developer/answer/113469#targetsdk
-   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
-
-1 errors, 0 warnings
-
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1791160601144.json
-
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Execution failed for task ':app:lintVitalRelease'.
-> Lint found fatal errors while assembling a release target.
-  
-  Fix the issues identified by lint, or create a baseline to see only new errors.
-  To create a baseline, run `gradlew updateLintBaseline` after adding the following to the module's build.gradle file:
-  ```
-  android {
-      lint {
-          baseline = file("lint-baseline.xml")
-      }
-  }
-  ```
-  For more details, see https://developer.android.com/studio/write/lint#snapshot
-  
-  /home/runner/work/FoodTrack/FoodTrack/app/build.gradle.kts:17: Error: Google Play requires that apps target API level 33 or higher. [ExpiredTargetSdkVersion]
-          targetSdk = 28
-          ~~~~~~~~~~~~~~
-  
-     Explanation for issues of type "ExpiredTargetSdkVersion":
-     Configuring your app to target a recent API level ensures that users
-     benefit from significant security and performance improvements, while still
-     allowing your app to run on older Android versions (down to the
-     minSdkVersion).
-  
-     To update your targetSdkVersion, follow the steps from "Meeting Google Play
-     requirements for target API level",
-     https://developer.android.com/distribute/best-practices/develop/target-sdk.
-     html
-  
-     https://support.google.com/googleplay/android-developer/answer/113469#targetsdk
-     https://developer.android.com/distribute/best-practices/develop/target-sdk.html
-  
-  1 errors, 0 warnings
-
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
-> Get more help at https://help.gradle.org.
-
-BUILD FAILED in 1m 29s
-48 actionable tasks: 48 executed
+BUILD SUCCESSFUL in 1m 40s
+82 actionable tasks: 82 executed
