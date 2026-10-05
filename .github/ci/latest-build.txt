@@ -1,9 +1,9 @@
-commit: 81f2fdbfbd79db8ea78b93fd3b3a5b6af2afe8a3
-run_number: 14
-run_id: 37246734564
-build_outcome: failure
-upload_outcome: skipped
-publish_outcome: skipped
+commit: db6104207397c5478efd61bb3d9398f837cd2fa3
+run_number: 16
+run_id: 37246938446
+build_outcome: success
+upload_outcome: success
+publish_outcome: success
 
 ===== BUILD LOG =====
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.9/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -27,20 +27,21 @@ to this project's gradle.properties.
 > Task :app:checkKotlinGradlePluginConfigurationErrors
 > Task :app:preBuild UP-TO-DATE
 > Task :app:preReleaseBuild UP-TO-DATE
-> Task :app:dataBindingMergeDependencyArtifactsRelease
 > Task :app:generateReleaseResValues
+> Task :app:dataBindingMergeDependencyArtifactsRelease
 > Task :app:generateReleaseResources
 > Task :app:packageReleaseResources
-> Task :app:checkReleaseAarMetadata
-> Task :app:mergeReleaseResources
-> Task :app:parseReleaseLocalResources
 > Task :app:mapReleaseSourceSetPaths
-> Task :app:dataBindingGenBaseClassesRelease
+> Task :app:checkReleaseAarMetadata
+> Task :app:parseReleaseLocalResources
 > Task :app:createReleaseCompatibleScreenManifests
 > Task :app:extractDeepLinksRelease
+> Task :app:mergeReleaseResources
 > Task :app:processReleaseMainManifest
+> Task :app:dataBindingGenBaseClassesRelease
 > Task :app:processReleaseManifest
 > Task :app:buildKotlinToolingMetadata
+> Task :app:processReleaseManifestForPackage
 > Task :app:javaPreCompileRelease
 > Task :app:extractProguardFiles
 > Task :app:mergeReleaseJniLibFolders
@@ -48,7 +49,6 @@ to this project's gradle.properties.
 > Task :app:stripReleaseDebugSymbols NO-SOURCE
 > Task :app:extractReleaseNativeSymbolTables NO-SOURCE
 > Task :app:mergeReleaseNativeDebugMetadata NO-SOURCE
-> Task :app:processReleaseManifestForPackage
 > Task :app:checkReleaseDuplicateClasses
 > Task :app:processReleaseResources
 > Task :app:desugarReleaseFileDependencies
@@ -58,8 +58,8 @@ to this project's gradle.properties.
 > Task :app:compileReleaseShaders NO-SOURCE
 > Task :app:generateReleaseAssets UP-TO-DATE
 > Task :app:mergeReleaseAssets
-> Task :app:compressReleaseAssets
 > Task :app:extractReleaseVersionControlInfo
+> Task :app:compressReleaseAssets
 > Task :app:collectReleaseDependencies
 > Task :app:sdkReleaseDependencyData
 > Task :app:writeReleaseAppMetadata
@@ -68,22 +68,33 @@ to this project's gradle.properties.
 > Task :app:mergeExtDexRelease
 > Task :app:kspReleaseKotlin
 
-> Task :app:compileReleaseKotlin FAILED
-e: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/ui/TodayActivity.kt:203:33 Type mismatch: inferred type is CoroutineScope but Context! was expected
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1791159307204.json
+> Task :app:compileReleaseKotlin
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/data/UserDatabase.kt:56:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/data/UserDatabase.kt:90:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/data/UserDatabase.kt:108:34 The corresponding parameter in the supertype 'Migration' is named 'db'. This may cause problems when calling this function with named arguments.
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/search/FoodSearchEngine.kt:90:13 Variable 'activeTokens' is assigned but never accessed
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/search/FoodSearchEngine.kt:102:17 The value 'mappedTokens' assigned to 'var activeTokens: List<String> defined in com.foodtrack.app.search.FoodSearchEngine.search' is never used
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/search/FoodSearchEngine.kt:156:17 Variable 'bestLiteral' is assigned but never accessed
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/search/FoodSearchEngine.kt:168:25 The value 'literal' assigned to 'var bestLiteral: Boolean defined in com.foodtrack.app.search.FoodSearchEngine.score' is never used
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/ui/MealTemplateBuilderActivity.kt:57:9 'startActivityForResult(Intent, Int): Unit' is deprecated. Deprecated in Java
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/ui/MealTemplateBuilderActivity.kt:84:9 'startActivityForResult(Intent, Int): Unit' is deprecated. Deprecated in Java
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/ui/MealTemplatesActivity.kt:46:48 'getColor(Int): Int' is deprecated. Deprecated in Java
+w: file:///home/runner/work/FoodTrack/FoodTrack/app/src/main/java/com/foodtrack/app/util/Prefs.kt:72:68 'constructor Locale(String!)' is deprecated. Deprecated in Java
 
-FAILURE: Build failed with an exception.
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:generateReleaseLintVitalReportModel
+> Task :app:dexBuilderRelease
+> Task :app:processReleaseJavaRes
+> Task :app:mergeReleaseJavaResource
+> Task :app:mergeDexRelease
+> Task :app:compileReleaseArtProfile
+> Task :app:packageRelease
+> Task :app:createReleaseApkListingFileRedirect
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:assembleRelease
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build-1791159480917.json
 
-* What went wrong:
-Execution failed for task ':app:compileReleaseKotlin'.
-> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
-   > Compilation error. See log for more details
-
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
-> Get more help at https://help.gradle.org.
-
-BUILD FAILED in 39s
-36 actionable tasks: 36 executed
+BUILD SUCCESSFUL in 1m 22s
+48 actionable tasks: 48 executed
