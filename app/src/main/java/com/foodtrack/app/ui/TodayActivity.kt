@@ -298,7 +298,7 @@ class TodayActivity : BaseActivity() {
 
             AlertDialog.Builder(this@TodayActivity)
                 .setTitle("העתקת היומן מאתמול")
-                .setMessage("יימספו ${yesterday.size} פריטים מיומן אתמול ליומן היום. הפריטים הקיימים היום יישארו ללא שינוי.")
+                .setMessage("יתווספו ${yesterday.size} פריטים מיומן אתמול ליומן היום. הפריטים הקיימים היום יישארו ללא שינוי.")
                 .setNegativeButton("ביטול", null)
                 .setPositiveButton("העתק") { _, _ ->
                     runSafely("TodayActivity.copyYesterday.insert") {
