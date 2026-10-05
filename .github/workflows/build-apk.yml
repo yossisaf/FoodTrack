@@ -9,7 +9,7 @@ jobs:
   build-apk:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,3 +34,10 @@ jobs:
           name: FoodTrack-release-apk
           path: app/build/outputs/apk/release/*.apk
           if-no-files-found: error
+
+      - name: Publish build as GitHub Release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="ci-foodtrack-${GITHUB_RUN_ID}"
+          gh release create "$tag" app/build/outputs/apk/release/*.apk             --title "FoodTrack CI build ${GITHUB_RUN_NUMBER}"             --notes "Automated unsigned Release APK for local signing/verification."
