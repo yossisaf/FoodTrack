@@ -73,6 +73,7 @@ class PhysicalActivityActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_physical_activity)
+        adaptForCompactScreens()
         activityInput = findViewById(R.id.editActivity)
         duration = findViewById(R.id.editDuration)
         weight = findViewById(R.id.editActivityWeight)
@@ -149,6 +150,18 @@ class PhysicalActivityActivity : BaseActivity() {
         refreshToday()
     }
 
+    /** Stacks duration and body-weight fields when width is too small for comfortable typing. */
+    private fun adaptForCompactScreens() {
+        if (resources.configuration.screenWidthDp >= 360) return
+        val row = findViewById<LinearLayout>(R.id.inputRow)
+        row.orientation = LinearLayout.VERTICAL
+        for (i in 0 until row.childCount) {
+            val child = row.getChildAt(i)
+            val params = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            if (i > 0) params.topMargin = dpToPx(8)
+            child.layoutParams = params
+        }
+    }
     private fun save() {
         if (saving) return
         hideKeyboard(saveButton)
