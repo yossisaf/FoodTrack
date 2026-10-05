@@ -261,11 +261,11 @@ class TodayActivity : BaseActivity() {
             .setView(paddedForDialog(input))
             .setPositiveButton("שמור") { _, _ ->
                 val value = input.text.toString().toIntOrNull()
-                if (value != null && value in 1..50) {
+                if (value != null && value in 1..30) {
                     Prefs.setWaterGoal(this, value)
                     refresh()
                 } else {
-                    Toast.makeText(this, "יש להזין יעד בין 1 ל־50 כוסות", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "יש להזין יעד בין 1 ל־30 כוסות", Toast.LENGTH_SHORT).show()
                 }
             }
             .setNegativeButton("ביטול", null)
@@ -283,7 +283,7 @@ class TodayActivity : BaseActivity() {
             val weight = db.weightDao().latest()?.weightKg
             val text = String.format(
                 Locale.getDefault(),
-                "FoodTrack — סיכום היום (%s)\n\nקלוריות: %.0f / %d קק״ל\nפעילות: %.0f דקות\nמשקל: %s\nמים: %d / %d\nחלבון: %.0f / %d ג׳",
+                "FoodTrack — סיכום היום (%s)\n\nקלוריות: %.0f / %d קק״ל\nפעילות: %.0f דקות\nמשקל: %s\nמים: %d / %d\nחלבון: %.0f ג׳",
                 DateUtil.todayHebrew(),
                 calories, Prefs.getDailyGoal(this@TodayActivity), activity,
                 weight?.let { String.format(Locale.getDefault(), "%.1f ק״ג", it) } ?: "—",
