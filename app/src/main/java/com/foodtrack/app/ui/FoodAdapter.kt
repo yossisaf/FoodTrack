@@ -75,6 +75,28 @@ class FoodAdapter(
     class HeaderViewHolder(val binding: ItemSectionHeaderBinding) : RecyclerView.ViewHolder(binding.root)
 
     class FoodViewHolder(private val binding: ItemFoodBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            if (binding.root.resources.configuration.screenWidthDp < 360) {
+                (binding.root.layoutParams as? ViewGroup.MarginLayoutParams)?.let { lp ->
+                    lp.setMargins(lp.leftMargin / 2, dp(binding.root, 2), lp.rightMargin / 2, dp(binding.root, 2))
+                    binding.root.layoutParams = lp
+                }
+                (binding.root.getChildAt(0) as? ViewGroup)?.setPaddingRelative(
+                    dp(binding.root, 10), dp(binding.root, 7), dp(binding.root, 2), dp(binding.root, 7)
+                )
+                binding.textFoodName.textSize = 16f
+                binding.textFoodDetail.textSize = 12f
+                binding.textFoodCalories.textSize = 13f
+                binding.buttonFavorite.layoutParams.width = dp(binding.root, 44)
+                binding.buttonFavorite.layoutParams.height = dp(binding.root, 44)
+                binding.buttonFavorite.textSize = 23f
+                binding.buttonAddFood.layoutParams.height = dp(binding.root, 44)
+                binding.buttonAddFood.minimumWidth = dp(binding.root, 56)
+                binding.buttonAddFood.setPadding(dp(binding.root, 6), 0, dp(binding.root, 6), 0)
+            }
+        }
+
         fun bind(
             food: FoodSearchResult,
             terms: List<String>,
@@ -116,6 +138,8 @@ class FoodAdapter(
                 if (fav) "הסר ממועדפים: ${food.nameHe}" else "הוסף למועדפים: ${food.nameHe}"
             binding.buttonFavorite.setOnClickListener { onFavoriteClick(food) }
         }
+
+        private fun dp(view: View, value: Int): Int = (value * view.resources.displayMetrics.density).toInt()
 
         private fun highlighted(text: String, terms: List<String>): CharSequence {
             if (text.isEmpty() || terms.isEmpty()) return text
